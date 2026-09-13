@@ -71,7 +71,7 @@ Resources will be published as they are completed and validated.
 
 | Resource | Status |
 |---|---|
-| CRM Lead Routing Framework | 🚧 Building |
+| [CRM Lead Routing Framework](crm-lead-routing-framework.md) | ✅ Published |
 | CRM Pipeline Architecture | 📌 Planned |
 | Lead Lifecycle Framework | 📌 Planned |
 | Marketing-to-Sales Handoff Framework | 📌 Planned |
