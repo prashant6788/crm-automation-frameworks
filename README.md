@@ -25,9 +25,21 @@ Founder, [Touchstone Infotech](https://www.touchstoneinfotech.com/)
 
 ---
 
+<div align="center">
+
+<img src="assets/crm-automation-architecture.png"
+     alt="CRM Automation Architecture - Lead Sources, CRM, Ownership, Qualification, Pipeline, Follow-Up, Revenue and Reporting"
+     width="1000">
+
+</div>
+
+<br>
+
+---
+
 ## 🧭 Start Here
 
-If you are designing or rebuilding a CRM system, follow this path:
+If you are designing, rebuilding or auditing a CRM system, follow this path:
 
 **1. [CRM Strategy Framework](crm-strategy-framework.md)**  
 Define the business process, CRM responsibilities, source of truth and operating model.
@@ -39,7 +51,7 @@ Define how contacts move from enquiry through qualification, opportunity, won/lo
 Design contacts, opportunities, fields, controlled values, duplicate rules and data ownership.
 
 **4. [CRM Pipeline Design Framework](crm-pipeline-design-framework.md)**  
-Turn the sales process into meaningful, measurable opportunity stages.
+Turn the sales process into meaningful and measurable opportunity stages.
 
 **5. [CRM Lead Routing Framework](crm-lead-routing-framework.md)**  
 Define assignment, ownership, routing precedence, reassignment and fallback.
@@ -48,7 +60,7 @@ Define assignment, ownership, routing precedence, reassignment and fallback.
 Design structured follow-up with human ownership, timing and stop conditions.
 
 **7. [CRM Automation QA Checklist](crm-automation-qa-checklist.md)**  
-Test the complete system before production deployment.
+Test routing, CRM updates, integrations, communication and failure paths before deployment.
 
 ---
 
@@ -68,7 +80,7 @@ flowchart LR
     J --> K["Reporting"]
 ```
 
-A CRM should answer five operational questions:
+A CRM should be able to answer five operational questions:
 
 > **Where did the lead come from? Who owns it? What should happen next? Where is the opportunity now? What business outcome resulted?**
 
@@ -92,11 +104,13 @@ A CRM should answer five operational questions:
 
 # 🧰 Practical Templates & Checklists
 
+These resources are designed to be used during CRM discovery, implementation, testing and ongoing operations.
+
 | | Resource | Use It For |
 |---|---|---|
 | 🧹 | **[CRM Data Quality Checklist](crm-data-quality-checklist.md)** | Auditing duplicates, missing data, ownership and attribution |
 | 🔍 | **[CRM Automation Opportunity Worksheet](crm-automation-opportunity-worksheet.md)** | Deciding which CRM processes should be automated |
-| 📝 | **[CRM Workflow Specification Template](crm-workflow-specification-template.md)** | Documenting implementation-ready workflows |
+| 📝 | **[CRM Workflow Specification Template](crm-workflow-specification-template.md)** | Documenting implementation-ready CRM workflows |
 | 🧪 | **[CRM Automation QA Checklist](crm-automation-qa-checklist.md)** | Testing routing, pipeline, integrations and failure paths |
 
 ---
@@ -199,7 +213,9 @@ Management Reporting
 
 The objective is not to automate every sales interaction.
 
-The objective is to make the customer journey **structured, accountable and measurable**.
+The objective is to make the customer journey:
+
+**Structured · Accountable · Recoverable · Measurable**
 
 ---
 
@@ -207,7 +223,7 @@ The objective is to make the customer journey **structured, accountable and meas
 
 ### 1. Process Before Platform
 
-Define the business process before configuring software.
+Define the business process before configuring CRM software.
 
 ### 2. CRM as the Operational System of Record
 
@@ -223,7 +239,7 @@ Pipeline stages should represent commercial progress rather than ordinary activi
 
 ### 5. Automate Stable Rules
 
-Use automation for repeatable decisions and actions. Keep judgment, negotiation and exceptions with people.
+Use automation for repeatable decisions and actions. Keep judgment, negotiation, approvals and exceptions with people.
 
 ### 6. Preserve Attribution
 
@@ -344,9 +360,58 @@ Won / Lost / Disqualified? ─ Yes ──→ Exit
 Continue Defined Sequence
 ```
 
-This helps prevent contradictory or unnecessary communication.
+This helps prevent contradictory, outdated or unnecessary communication.
 
 See the **[CRM Follow-Up Framework](crm-follow-up-framework.md)**.
+
+---
+
+# 📅 Appointment Automation
+
+Appointment automation should remain synchronized with the CRM lifecycle.
+
+```text
+Appointment Requested
+↓
+Booked
+↓
+Confirmation + Reminders
+↓
+Attended
+├──→ Next Sales Action
+│
+├──→ Cancelled → Rebooking / Review
+│
+└──→ No-Show → Recovery Workflow
+```
+
+A rescheduled or cancelled appointment should not leave obsolete reminders or create unnecessary duplicate opportunities.
+
+See the **[CRM Appointment Automation Framework](crm-appointment-automation-framework.md)**.
+
+---
+
+# 🔎 Attribution
+
+CRM attribution should preserve the difference between:
+
+```text
+Original Source
+      +
+Latest Source
+      +
+Campaign
+      +
+Opportunity Context
+      +
+Revenue
+```
+
+Original acquisition data should normally be preserved rather than overwritten whenever a contact returns through another channel.
+
+Attribution is a measurement model — not perfect proof of causality.
+
+See the **[CRM Attribution Framework](crm-attribution-framework.md)**.
 
 ---
 
@@ -361,7 +426,7 @@ Tasks Created
 Workflow Runs
 ```
 
-Measure the customer and revenue process:
+Measure the actual customer and revenue process:
 
 ```text
 Leads
@@ -389,6 +454,35 @@ See the **[CRM Reporting Framework](crm-reporting-framework.md)**.
 
 ---
 
+# 🛡️ Reliability Before Automation
+
+CRM automation should account for more than the happy path.
+
+Production workflows should consider:
+
+- Duplicate contacts
+- Duplicate events
+- Missing information
+- Invalid field values
+- Existing ownership
+- Existing opportunities
+- API failures
+- Integration timeouts
+- Rate limits
+- Concurrent updates
+- Workflow re-entry
+- Infinite loops
+- Manual overrides
+- Communication stop conditions
+- Failed routing
+- Recovery and rollback
+
+A workflow is not production-ready simply because it works once.
+
+Use the **[CRM Automation QA Checklist](crm-automation-qa-checklist.md)** before deployment.
+
+---
+
 # 🤖 CRM + AI
 
 AI can assist CRM operations, but it does not need to become the CRM's system of record.
@@ -402,9 +496,11 @@ Useful AI-assisted tasks may include:
 - Lead qualification assistance
 - Recommended next actions
 
-For deeper AI workflow design, see **[AI Automation Playbooks](https://github.com/prashant6788/ai-automation-playbooks)**.
+For deeper AI workflow design, see:
 
-This repository intentionally focuses primarily on **CRM architecture and deterministic revenue workflows**.
+### 🤖 [AI Automation Playbooks](https://github.com/prashant6788/ai-automation-playbooks)
+
+This repository intentionally focuses primarily on **CRM architecture, deterministic automation and revenue workflows**.
 
 ---
 
@@ -413,8 +509,12 @@ This repository intentionally focuses primarily on **CRM architecture and determ
 ```text
 crm-automation-frameworks/
 │
+├── assets/
+│   └── crm-automation-architecture.png
+│
 ├── README.md
 ├── CONTRIBUTING.md
+├── LICENSE
 │
 ├── crm-strategy-framework.md
 ├── lead-lifecycle-framework.md
@@ -445,6 +545,22 @@ Practical frameworks for AI strategy, workflow design, CRM + AI, human handoff, 
 ### 🔎 [SEO Growth Systems](https://github.com/prashant6788/seo-growth-systems)
 
 Practical frameworks for SEO, GEO and visibility across traditional and AI-powered search.
+
+Together, these repositories cover three connected layers:
+
+```text
+SEO / GEO
+↓
+Demand & Visibility
+
+CRM Automation
+↓
+Lead & Revenue Operations
+
+AI Automation
+↓
+Intelligence & Workflow Assistance
+```
 
 ---
 
@@ -509,7 +625,30 @@ My focus is building practical systems that connect:
 ## Repository Governance
 
 - [x] CONTRIBUTING.md
-- [ ] LICENSE
+- [x] LICENSE
+
+## Visual Documentation
+
+- [x] CRM Automation Architecture
+
+### ✅ CRM Automation Frameworks V1 is complete.
+
+Future additions should focus on genuine implementation learnings, useful examples and tested improvements rather than adding files simply for volume.
+
+---
+
+# 🔮 Potential Future Additions
+
+Possible future resources may include:
+
+- CRM Lead Routing Implementation Example
+- Pipeline Design Implementation Example
+- Multi-Pipeline CRM Architecture Example
+- CRM Migration Checklist
+- CRM Integration Mapping Template
+- Revenue Operations Dashboard Example
+
+These should be added only when they provide clear incremental value.
 
 ---
 
@@ -532,7 +671,30 @@ Useful contributions include improvements to:
 - Integration failure handling
 - CRM QA
 
-Please avoid promotional backlinks, generic filler, fabricated statistics, fake case studies, confidential data and credentials.
+Please avoid:
+
+- Promotional backlinks
+- Generic filler
+- Fabricated statistics
+- Fake case studies
+- Unsupported performance claims
+- Confidential customer data
+- Credentials or API secrets
+
+---
+
+# 📄 License
+
+The original frameworks, worksheets, templates, checklists, diagrams and implementation examples in this repository are licensed under the **Creative Commons Attribution 4.0 International License (CC BY 4.0)** unless otherwise noted.
+
+You may share and adapt the material, including for commercial purposes, provided appropriate attribution is given.
+
+**Suggested attribution:**
+
+> CRM Automation Frameworks by Prashant Rajput  
+> https://github.com/prashant6788/crm-automation-frameworks
+
+See **[LICENSE](LICENSE)** for the repository's license notice and license information.
 
 ---
 
@@ -549,7 +711,15 @@ These resources are intended as **practical working frameworks**, not guarantees
 - Attribution completeness
 - Regulatory compliance
 
-Production implementations should be evaluated against current vendor documentation, business requirements, security/privacy requirements and real-world testing.
+Production implementations should be evaluated against:
+
+- Current vendor documentation
+- Business requirements
+- Security requirements
+- Privacy requirements
+- Applicable regulations
+- Data sensitivity
+- Real-world testing
 
 ---
 
@@ -557,7 +727,7 @@ Production implementations should be evaluated against current vendor documentat
 
 ## 🔄 CRM Automation Frameworks
 
-**CRM Strategy · Lifecycle · Data · Pipeline · Routing · Follow-Up · Attribution · Reporting**
+**Strategy · Lifecycle · Data · Pipeline · Routing · Follow-Up · Attribution · Reporting**
 
 Maintained by **[Prashant Rajput](https://github.com/prashant6788)**  
 Founder, **[Touchstone Infotech](https://www.touchstoneinfotech.com/)**
